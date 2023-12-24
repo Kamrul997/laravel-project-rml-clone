@@ -133,9 +133,8 @@
                                     <option value="inactive" {{ $data->status == 'inactive' ? 'selected' : '' }}>Inactive
                                     </option>
                                 </select>
-                                @if ($errors->has('unit_id'))
-                                    <label id="name-error" class="error mt-2 text-danger" for="name">Please enter a
-                                        Unit</label>
+                                @if ($errors->has('status'))
+                                    <label id="name-error" class="error mt-2 text-danger" for="name">Please select status.</label>
                                 @endif
                             </div>
 
@@ -255,8 +254,7 @@
                 if (zoneId == '') {
                     var $el = $("#area_ids");
                     $el.empty();
-                    $el.append($("<option></option>")
-                        .attr("value", '').text('Select'));
+                    $el.append($("<option></option>").attr("value", '').text('Select'));
                     return;
                 }
                 var url = "{{ route('administrative.unit.get.area') }}"

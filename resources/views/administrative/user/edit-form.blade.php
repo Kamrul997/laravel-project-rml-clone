@@ -52,11 +52,11 @@
 </div> -->
 @endif
 
-@if($role_id == 5)
+{{-- @if($role_id == 5)
 <div class="form-group {{ $errors->has('unit_id') ? 'has-error' : '' }}">
   <label for="unit_id">Select Unit</label>
   <select name="unit_id" id="unit_id" class="form-control" required>
-    <option value="">Select</option>
+    <option value="" selected>Select Here</option>
     @foreach($units as $unit)
     <option value="{{ $unit->id }}" {{  isset($data) && $data->unit_id == $unit->id ? 'selected' : '' }}>{{ $unit->name }}</option>
     @endforeach
@@ -66,13 +66,13 @@
   @endif
 </div>
 
-@endif
+@endif --}}
 
 @if($role_id == 6)
 
 <div class="form-group {{ $errors->has('unit_id') ? 'has-error' : '' }}">
   <label for="unit_id">Select Unit</label>
-  <select name="unit_id" class="unit_id" class="form-control" required>
+  <select name="unit_id" id="unit_id" class="form-control" required>
     <option value="">Select</option>
     @foreach($units as $unit)
     <option value="{{ $unit->id }}" @if($unit->id==$data->unit_id) selected @endif>{{ $unit->name }}</option>
