@@ -3,25 +3,24 @@
 namespace App\Http\Controllers\Administrative;
 
 use DataTables;
-use App\Models\Area;
-use App\Models\Zone;
-use App\Http\Requests\AreaRequest;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\ZoneRequest;
+use App\Models\Zone;
 use Illuminate\Support\Facades\Gate;
 
-class AreaController extends Controller
+class ZoneController extends Controller
 {
   public function index()
   {
-    if (!Gate::allows('area_list')) {
+    if (!Gate::allows('zone_list')) {
       return abort(401);
     }
-    return view('administrative.area.index');
+    return view('administrative.zone.index');
   }
 
   public function data()
   {
-    if (!Gate::allows('area_list')) {
+    if (!Gate::allows('zone_list')) {
       return abort(401);
     }
     return  $this->getAllData();
@@ -29,76 +28,72 @@ class AreaController extends Controller
 
   public function create()
   {
-    if (!Gate::allows('area_create')) {
+    if (!Gate::allows('zone_create')) {
       return abort(401);
     }
-    $zones = Zone::all();
-    return view('administrative.area.create', compact('zones'));
+    return view('administrative.zone.create');
   }
 
-  public function saveOrUpdate(AreaRequest $request)
+  public function saveOrUpdate(ZoneRequest $request)
   {
-    if (!Gate::allows('area_create')) {
+    if (!Gate::allows('zone_create')) {
       return abort(401);
     }
 
-    $area = Area::updateOrCreate(['id' => $request->id], $request->all());
+    $zone = Zone::updateOrCreate(['id' => $request->id], $request->all());
 
-    if ($area) {
-      return redirect()->route('administrative.area')->with('success', 'Area Created Successfully');
+    if ($zone) {
+      return redirect()->route('administrative.zone')->with('success', 'Zone Created Successfully');
     } else {
       return redirect()->back()->withInput()->with('error', 'Something Wrong,Please Try Again');
     }
   }
 
-  public function edit(Area $area)
+  public function edit(Zone $zone)
   {
-    if (!Gate::allows('area_edit')) {
+    if (!Gate::allows('zone_edit')) {
       return abort(401);
     }
-    $data = $area;
-    $zones = Zone::all();
-    return view('administrative.area.create', compact('data', 'zones'));
+    $data = $zone;
+    return view('administrative.zone.create', compact('data'));
   }
 
   public function getAllData()
   {
-    $data = Area::query();
+    $data = Zone::query();
     return Datatables::of($data)
       ->addColumn('action', function ($row) {
         $html = '';
-        $html .= '<ul class="orderDatatable_actions mb-0 d-flex justify-content-between flex-wrap">
+        $html .= '
+        <ul class="orderDatatable_actions mb-0 d-flex justify-content-between flex-wrap">
 
-        <li>
-            <a href="' . route('administrative.area.edit', $row->id) . '" class="edit">
-                <i class="uil uil-edit"></i>
-            </a>
-        </li>
+                        <li>
+                            <a href="' . route('administrative.zone.edit', $row->id) . '" class="edit">
+                                <i class="uil uil-edit"></i>
+                            </a>
+                        </li>
 
-    </ul>';
+                    </ul>';
         // $html .= '<a href="#" onclick="deleteData(' . $row->id . ');">
         //                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-delete"><path d="M21 4H8l-7 8 7 8h13a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2z"></path><line x1="18" y1="9" x2="12" y2="15"></line><line x1="12" y1="9" x2="18" y2="15"></line></svg>
         //           </a>';
         return $html;
       })
-      ->editColumn('zone', function ($data) {
-        return $data->zone ? $data->zone->name : '';
-      })
 
-      ->rawColumns(['zone', 'action'])
+      ->rawColumns(['action'])
       ->blacklist(['created_at', 'updated_at', 'action'])
       ->addIndexColumn()
       ->toJson();
   }
 
-  public function destroy(Area $area)
+  public function destroy(Zone $zone)
   {
-    if (!Gate::allows('area_delete')) {
+    if (!Gate::allows('zone_delete')) {
       return abort(401);
     }
     $result = [];
-    if (count($area->unit) == 0) {
-      $result = $area->delete();
+    if (count($zone->area) == 0) {
+      $result = $zone->delete();
     }
     if ($result) {
       echo 'success';

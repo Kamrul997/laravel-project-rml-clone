@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Administrative\AreaController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Administrative\AuthController;
@@ -9,6 +10,7 @@ use App\Http\Controllers\Administrative\RoleController;
 use App\Http\Controllers\Administrative\SubUnitController;
 use App\Http\Controllers\Administrative\UnitController;
 use App\Http\Controllers\Administrative\UserController;
+use App\Http\Controllers\Administrative\ZoneController;
 
 /*
 |--------------------------------------------------------------------------
@@ -73,7 +75,7 @@ Route::namespace('Administrative')->middleware('auth')->prefix('administrative')
     });
 
     // User
-      Route::prefix('user')->group(function () {
+    Route::prefix('user')->group(function () {
 
         Route::get('/list', [UserController::class, 'index'])->name('user');
 
@@ -92,9 +94,29 @@ Route::namespace('Administrative')->middleware('auth')->prefix('administrative')
         Route::get('get-create-form', [UserController::class, 'getCreateForm'])->name('user.get.create.form');
 
         Route::get('get-edit-form', [UserController::class, 'getEditForm'])->name('user.get.edit.form');
-      });
+    });
 
-       // Unit
+    // Zone
+    Route::prefix('zone')->group(function () {
+        Route::get('/list', [ZoneController::class, 'index'])->name('zone');
+        Route::get('zone-data', [ZoneController::class, 'data'])->name('zone.data');
+        Route::get('edit/{zone}', [ZoneController::class, 'edit'])->name('zone.edit');
+        Route::delete('delete/{zone}', [ZoneController::class, 'destroy'])->name('zone.destroy');
+        Route::get('create', [ZoneController::class, 'create'])->name('zone.create');
+        Route::post('create', [ZoneController::class, 'saveOrUpdate'])->name('zone.store');
+    });
+
+    // area
+    Route::prefix('area')->group(function () {
+        Route::get('/list', [AreaController::class, 'index'])->name('area');
+        Route::get('area-data', [AreaController::class, 'data'])->name('area.data');
+        Route::get('edit/{area}', [AreaController::class, 'edit'])->name('area.edit');
+        Route::delete('delete/{area}', [AreaController::class, 'destroy'])->name('area.destroy');
+        Route::get('create', [AreaController::class, 'create'])->name('area.create');
+        Route::post('create', [AreaController::class, 'saveOrUpdate'])->name('area.store');
+    });
+
+    // Unit
     Route::prefix('unit')->group(function () {
         Route::get('/list', [UnitController::class, 'index'])->name('unit');
         Route::get('unit-data', [UnitController::class, 'data'])->name('unit.data');
@@ -106,8 +128,8 @@ Route::namespace('Administrative')->middleware('auth')->prefix('administrative')
         Route::get('get-subUnit', [UnitController::class, 'getSubUnit'])->name('unit.get.subUnit');
     });
 
-      // Sub Unit
-      Route::prefix('sub-unit')->group(function () {
+    // Sub Unit
+    Route::prefix('sub-unit')->group(function () {
         Route::get('/list', [SubUnitController::class, 'index'])->name('sub.unit');
         Route::get('sub-unit-data', [SubUnitController::class, 'data'])->name('sub.unit.data');
         Route::get('edit/{subUnit}', [SubUnitController::class, 'edit'])->name('sub.unit.edit');
