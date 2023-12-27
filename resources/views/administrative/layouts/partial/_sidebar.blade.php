@@ -193,6 +193,12 @@
                         <li class="{{ request()->is('administrative/area/*') ? 'active' : '' }}">
                             <a href="{{ route('administrative.area') }}">Area</a>
                         </li>
+                        <li class="{{ request()->is('administrative/unit/*') ? 'active' : '' }}">
+                            <a href="{{ route('administrative.unit') }}">Unit</a>
+                        </li>
+                        <li class="{{ request()->is('administrative/sub-unit/*') ? 'active' : '' }}">
+                            <a href="{{ route('administrative.sub.unit') }}">Sub Unit</a>
+                        </li>
                     </ul>
                 </li>
 
