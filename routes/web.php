@@ -1,16 +1,29 @@
 <?php
 
-use App\Http\Controllers\Administrative\AreaController;
-use Illuminate\Support\Facades\Auth;
+
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Administrative\AreaController;
 use App\Http\Controllers\Administrative\AuthController;
 use App\Http\Controllers\Administrative\HomeController;
-use App\Http\Controllers\Administrative\PermissionController;
 use App\Http\Controllers\Administrative\RoleController;
-use App\Http\Controllers\Administrative\SubUnitController;
 use App\Http\Controllers\Administrative\UnitController;
 use App\Http\Controllers\Administrative\UserController;
 use App\Http\Controllers\Administrative\ZoneController;
+use App\Http\Controllers\Administrative\TargetController;
+use App\Http\Controllers\Administrative\ProfileController;
+use App\Http\Controllers\Administrative\SubUnitController;
+use App\Http\Controllers\Administrative\CustomerController;
+use App\Http\Controllers\Administrative\ForecastController;
+use App\Http\Controllers\Administrative\StatementController;
+use App\Http\Controllers\Administrative\CollectionController;
+use App\Http\Controllers\Administrative\PermissionController;
+use App\Http\Controllers\Administrative\TargetImportController;
+use App\Http\Controllers\Administrative\DisapprovedNoteController;
+use App\Http\Controllers\Administrative\FinalCollectionController;
+use App\Http\Controllers\Administrative\PreviousNotApprovedController;
+use App\Http\Controllers\Administrative\ApproveDateWiseCollectionController;
+use App\Http\Controllers\Administrative\DepositDateWiseCollectionController;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,6 +43,57 @@ Route::namespace('Administrative')->middleware('guest')->group(function () {
     Route::get('/', [AuthController::class, 'index'])->name('login');
 
     Route::post('/login', [AuthController::class, 'authenticate'])->name('login.post');
+});
+
+Route::prefix('administrative')->group(function () {
+    Route::resource('collection', CollectionController::class);
+    Route::get('collection-download', [CollectionController::class, 'download'])->name('collection.download');
+
+    Route::get('entry-collection/{id}', [CollectionController::class, 'entryCollection'])->name('collect_entry');
+
+    Route::get('import-target', [TargetImportController::class, 'index'])->name('view_target_import');
+    Route::post('import-target-store', [TargetImportController::class, 'import'])->name('store_target');
+
+
+    Route::get('import-customer', [CustomerController::class, 'importIndex'])->name('view_customer_import');
+    Route::post('import-customer-store', [CustomerController::class, 'import'])->name('store_customer');
+
+    Route::get('import-bank', [CustomerController::class, 'importBank'])->name('view_bank_import');
+    Route::post('import-bank-store', [CustomerController::class, 'importBankSheet'])->name('store_bank');
+
+    Route::get('import-account-statement', [StatementController::class, 'importIndex'])->name('view_account_statement_import');
+    Route::post('import-account-statement-store', [StatementController::class, 'importAccountStatement'])->name('store_account_statement');
+
+    Route::get('pending-collection', [CollectionController::class, 'pendingCollectionIndex'])->name('pending_collection.index');
+    Route::post('data-pending-collection', [CollectionController::class, 'pendingCollection'])->name('pending_collection.data');
+    Route::get('pending-collection-download', [CollectionController::class, 'pendingCollectionDownload'])->name('pending_collection_download');
+    Route::get('reject-collection', [CollectionController::class, 'rejectCollection'])->name('reject_collection');
+    Route::get('get-branch', [TargetController::class, 'getBranch'])->name('get.branch');
+
+
+    Route::resource('customer', CustomerController::class);
+    Route::get('customer-download', [CustomerController::class, 'download'])->name('c.download');
+    Route::get('customer-data/{id}', [CustomerController::class, 'custInfo'])->name('cust_info');
+    Route::get('statement', [CustomerController::class, 'statement'])->name('get_statement');
+
+
+    Route::get('payment-schedule', [CustomerController::class, 'paymentSchedule'])->name('get_payment');
+    Route::resource('profile', ProfileController::class);
+    Route::get('reset-password', [ProfileController::class, 'resetPassword'])->name('reset_password');
+    Route::post('password-update', [ProfileController::class, 'updatePassword'])->name('reset_password_update');
+
+
+    Route::get('approved-collection/{id}', [CollectionController::class, 'approvedCollection'])->name('approved_collection');
+    Route::post('multi-approved-collection', [CollectionController::class, 'multiApprovedCollection'])->name('multi_approved_collection');
+    Route::get('disapproved-collection', [CollectionController::class, 'disapprovedCollection'])->name('disapproved_collection');
+    Route::get('credit-sales-organogram', [CollectionController::class, 'organogram'])->name('c_s_organogram');
+
+
+    Route::get('view-statement', [CollectionController::class, 'viewStatement'])->name('view_statement');
+    Route::get('view-payment', [CollectionController::class, 'viewPayment'])->name('view_payment');
+    Route::get('make-payment-list', [CollectionController::class, 'paymentIndex'])->name('make_payment_index');
+    Route::post('make-payment-data', [CollectionController::class, 'paymentData'])->name('make_payment_data');
+    Route::post('download-payment', [CollectionController::class, 'paymentDownload'])->name('download.payment');
 });
 
 Route::namespace('Administrative')->middleware('auth')->prefix('administrative')->name('administrative.')->group(function () {
@@ -137,5 +201,26 @@ Route::namespace('Administrative')->middleware('auth')->prefix('administrative')
         Route::get('create', [SubUnitController::class, 'create'])->name('sub.unit.create');
         Route::post('create', [SubUnitController::class, 'saveOrUpdate'])->name('sub.unit.store');
         Route::get('get-unit', [SubUnitController::class, 'getUnit'])->name('sub.unit.get.unit');
+    });
+
+    Route::prefix('reports')->group(function () {
+        Route::get('/final-collection', [FinalCollectionController::class, 'index'])->name('final.collection');
+        Route::get('/data/final-collection', [FinalCollectionController::class, 'data'])->name('data.final.collection');
+        Route::get('/final-collection-download', [FinalCollectionController::class, 'download'])->name('data.final.collection.download');
+
+        Route::get('/deposit-slip-wise-report', [DepositDateWiseCollectionController::class, 'index2'])->name('deposit.slip.wise.report');
+        Route::post('/data/deposit-slip-wise-report', [DepositDateWiseCollectionController::class, 'data2'])->name('data.deposit.slip.wise.report');
+        Route::post('/data/deposit-slip-wise-report-download', [DepositDateWiseCollectionController::class, 'downloadData'])->name('data.deposit.slip.wise.report.download');
+
+        Route::get('/deposit-date-wise-collection', [DepositDateWiseCollectionController::class, 'index'])->name('deposit.date.wise.collection');
+        Route::post('/data/deposit-date-wise-collection', [DepositDateWiseCollectionController::class, 'data'])->name('data.deposit.date.wise.collection');
+        Route::post('/data/deposit-date-wise-collection-download', [DepositDateWiseCollectionController::class, 'download'])->name('data.deposit.date.wise.collection.download');
+
+        Route::get('/approve-date-wise-collection', [ApproveDateWiseCollectionController::class, 'index'])->name('approve.date.wise.collection');
+        Route::post('/data/approve-date-wise-collection', [ApproveDateWiseCollectionController::class, 'data'])->name('data.approve.date.wise.collection');
+        Route::post('/data/approve-date-wise-collection-download', [ApproveDateWiseCollectionController::class, 'download'])->name('data.approve.date.wise.collection.download');
+        Route::get('/previous-not-approve', [PreviousNotApprovedController::class, 'index'])->name('previous.not.approve');
+        Route::get('/data/previous-not-approve', [PreviousNotApprovedController::class, 'data'])->name('data.previous.not.approve');
+        Route::get('/data/previous-not-approve-download', [PreviousNotApprovedController::class, 'download'])->name('data.previous.not.approve.download');
     });
 });

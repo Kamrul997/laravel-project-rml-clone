@@ -14,7 +14,7 @@
 
                 @can('collection_list')
                 <li class="{{ request()->routeIs('collection.index') ? 'active' : '' }}">
-                    <a href="/" class="">
+                    <a href="{{ route('collection.index') }}" class="">
                         <span class="nav-icon uil uil-list-ul"></span>
                         <span class="menu-text">My Collection</span>
                     </a>
