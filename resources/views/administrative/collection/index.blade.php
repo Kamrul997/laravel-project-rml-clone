@@ -2,8 +2,6 @@
 @section('page-css')
 @endsection
 @section('content')
-    
-
     <div class="pt-3">
         <div class="d-flex justify-content-between align-items-center flex-wrap grid-margin mb-2 ">
             <div>

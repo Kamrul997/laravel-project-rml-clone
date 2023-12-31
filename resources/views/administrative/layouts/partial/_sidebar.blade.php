@@ -22,15 +22,15 @@
                 @endcan
                 @can('customer_list')
                 <li class="{{ request()->routeIs('customer.index') ? 'active' : '' }}">
-                    <a href="/" class="">
+                    <a href="{{ route('customer.index') }}" class="">
                         <span class="nav-icon uil uil-user-nurse"></span>
                         <span class="menu-text">My Customer</span>
                     </a>
                 </li>
                 @endcan
                 @can('collection_approval_list')
-                <li class="{{ request()->routeIs('pending_collection') ? 'active' : '' }}">
-                    <a href="/" class="">
+                <li class="{{ request()->routeIs('pending_collection.index') ? 'active' : '' }}">
+                    <a href="{{ route('pending_collection.index') }}" class="">
                         <span class="nav-icon uil uil-check-circle"></span>
                         <span class="menu-text">Collection Approval</span>
                     </a>
@@ -38,23 +38,23 @@
                 @endcan
 
                 <li class="{{ request()->routeIs('reject_collection') ? 'active' : '' }}">
-                    <a href="/" class="">
+                    <a href="{{ route('reject_collection') }}" class="">
                         <span class="nav-icon uil uil-exclamation-triangle"></span>
                         <span class="menu-text">Previous Not Approve</span>
                     </a>
                 </li>
 
                 @can('organogram_list')
-                <li class="{{ request()->is('administrative/collection') ? 'active' : '' }}">
-                    <a href="/" class="">
+                <li class="{{ request()->routeIs('c_s_organogram') ? 'active' : '' }}">
+                    <a href="{{ route('c_s_organogram') }}" class="">
                         <span class="nav-icon uil uil-analysis"></span>
                         <span class="menu-text">Credit Sales Organogram</span>
                     </a>
                 </li>
                 @endcan
                 @can('target_list')
-                <li class="{{ request()->is('administrative/collection') ? 'active' : '' }}">
-                    <a href="/" class="">
+                <li class="{{ request()->is('administrative/target/*') ? 'active' : '' }}">
+                    <a href="{{ route('administrative.target') }}" class="">
                         <span class="nav-icon uil uil-record-audio"></span>
                         <span class="menu-text">Target Sheet</span>
                     </a>

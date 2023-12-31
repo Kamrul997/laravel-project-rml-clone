@@ -203,6 +203,14 @@ Route::namespace('Administrative')->middleware('auth')->prefix('administrative')
         Route::get('get-unit', [SubUnitController::class, 'getUnit'])->name('sub.unit.get.unit');
     });
 
+     // Target Sheet
+     Route::prefix('target')->group(function () {
+        Route::get('/list', [TargetController::class, 'index'])->name('target');
+        Route::get('target-data', [TargetController::class, 'data'])->name('target.data');
+        Route::get('download', [TargetController::class, 'download'])->name('target.download');
+        Route::get('/target/show/{id}', [TargetController::class, 'showData'])->name('target_show');
+    });
+
     Route::prefix('reports')->group(function () {
         Route::get('/final-collection', [FinalCollectionController::class, 'index'])->name('final.collection');
         Route::get('/data/final-collection', [FinalCollectionController::class, 'data'])->name('data.final.collection');

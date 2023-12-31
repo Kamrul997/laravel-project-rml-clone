@@ -5,7 +5,7 @@
     <div class="pt-3">
         <div class="d-flex justify-content-between align-items-center flex-wrap grid-margin mb-2 ">
             <div>
-                <h4 class="mb-3 mb-md-0">Reject Collections</h4>
+                <h4 class="mb-3 mb-md-0">Credit Sales Organogram</h4>
             </div>
             <div class="d-flex align-items-center flex-wrap text-nowrap">
 
@@ -21,20 +21,19 @@
                                 <table class="table mb-0 table-borderless" id="datatables">
                                     <thead>
                                         <tr>
-                                            <th>Id</th>
-                                            <th>Employee ID</th>
-                                            <th>Employee Name</th>
-                                            <th>Status</th>
-                                            <th>Collection Details</th>
-                                            <th>Mobile No</th>
-                                            <th>Unit ID</th>
-                                            <th>Order No</th>
-                                            <th>Customer Name</th>
-                                            <th>Arrer Collection</th>
-                                            <th>Current Collection</th>
-                                            <th>Advance Collection</th>
-                                            <th>Deposit Type</th>
-                                            <th>Total Collection Amount</th>
+                                            <th>Area</th>
+                                            <th>Zone</th>
+                                            <th>Unit</th>
+                                            <th>National Emp Id</th>
+                                            <th>National Emp Name</th>
+                                            <th>Zone Emp Id</th>
+                                            <th>Zone Emp Name</th>
+                                            <th>Area Emp Id</th>
+                                            <th>Area Emp Name</th>
+                                            <th>Unit Emp Id</th>
+                                            <th>Unit Emp Name</th>
+                                            <th>Sub Unit Emp Id</th>
+                                            <th>Sub Unit Emp Name</th>
                                         </tr>
                                     </thead>
                                     <tbody></tbody>
@@ -61,77 +60,69 @@
                     },
                     processing: true,
                     serverSide: true,
-                    ajax: "{{ route('reject_collection') }}",
+                    ajax: "{{ route('c_s_organogram') }}",
                     columns: [
 
                         {
-                            data: 'id',
-                            name: 'id'
+                            data: 'area',
+                            name: 'area'
                         },
 
                         {
-                            data: 'employee_id',
-                            name: 'employee_id'
+                            data: 'zone',
+                            name: 'zone'
                         },
 
                         {
-                            data: 'employee_name',
-                            name: 'employee_name'
+                            data: 'unit',
+                            name: 'unit'
+                        },
+                        {
+                            data: 'national_emp_id',
+                            name: 'national_emp_id'
                         },
 
                         {
-                            data: 'status',
-                            name: 'status'
+                            data: 'national',
+                            name: 'national'
                         },
 
                         {
-                            data: 'details',
-                            name: 'details'
+                            data: 'zone_manager_emp_id',
+                            name: 'zone_manager_emp_id'
                         },
 
                         {
-                            data: 'mobile_no',
-                            name: 'mobile_no'
+                            data: 'zone_manager',
+                            name: 'zone_manager'
                         },
 
                         {
-                            data: 'unit_id',
-                            name: 'unit_id'
+                            data: 'area_manager_emp_id',
+                            name: 'area_manager_emp_id'
                         },
 
                         {
-                            data: 'ord_no',
-                            name: 'ord_no'
+                            data: 'area_manager',
+                            name: 'area_manager'
                         },
 
                         {
-                            data: 'cutomer_name',
-                            name: 'cutomer_name'
+                            data: 'unit_manager_emp_id',
+                            name: 'unit_manager_emp_id'
                         },
 
                         {
-                            data: 'target_arrear',
-                            name: 'target_arrear'
+                            data: 'unit_manager',
+                            name: 'unit_manager'
                         },
-
                         {
-                            data: 'target_current',
-                            name: 'target_current'
+                            data: 'sub_unit_emp_id',
+                            name: 'sub_unit_emp_id'
                         },
-
                         {
-                            data: 'advanced_collection',
-                            name: 'advanced_collection'
-                        },
-
-                        {
-                            data: 'deposit_name',
-                            name: 'deposit_name'
-                        },
-
-                        {
-                            data: 'collection_amount',
-                            name: 'collection_amount'
+                            data: 'sub_unit',
+                            name: 'sub_unit'
                         },
                     ]
                 });
