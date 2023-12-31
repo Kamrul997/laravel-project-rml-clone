@@ -211,6 +211,17 @@ Route::namespace('Administrative')->middleware('auth')->prefix('administrative')
         Route::get('/target/show/{id}', [TargetController::class, 'showData'])->name('target_show');
     });
 
+    // Forecast
+    Route::prefix('forecast')->group(function () {
+        Route::get('/list', [ForecastController::class, 'index'])->name('forecast');
+        Route::get('target-data', [ForecastController::class, 'data'])->name('forecast.data');
+        Route::post('store-date', [ForecastController::class, 'storeDateWise'])->name('forecast.date');
+        Route::get('get-date-data/{id?}', [ForecastController::class, 'getDateData'])->name('forecast.date.data');
+        Route::post('store-month', [ForecastController::class, 'storeMonthWise'])->name('forecast.date');
+        Route::get('get-month-data/{id?}', [ForecastController::class, 'getMonthData'])->name('forecast.month.data');
+        Route::get('get-daily-data', [ForecastController::class, 'index'])->name('get_daily_data');
+    });
+
     Route::prefix('reports')->group(function () {
         Route::get('/final-collection', [FinalCollectionController::class, 'index'])->name('final.collection');
         Route::get('/data/final-collection', [FinalCollectionController::class, 'data'])->name('data.final.collection');

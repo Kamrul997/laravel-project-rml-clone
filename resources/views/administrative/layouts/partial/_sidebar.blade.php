@@ -96,23 +96,21 @@
                     </ul>
                 </li> --}}
 
-                @can('collection_list')
-                <li class="{{ request()->is('administrative/collection') ? 'active' : '' }}">
-                    <a href="/" class="">
+                <li class="{{ request()->routeIs('administrative.forecast') ? 'active' : '' }}">
+                    <a href="{{ route('administrative.forecast') }}" class="">
                         <span class="nav-icon uil uil-clock-three"></span>
                         <span class="menu-text">Forecast</span>
                     </a>
                 </li>
-                @endcan
 
-                <li class="{{ request()->is('administrative/collection') ? 'active' : '' }}">
-                    <a href="/" class="">
+                <li class="{{ request()->routeIs('profile.index') ? 'active' : '' }}">
+                    <a href="{{ route('profile.index') }}" class="">
                         <span class="nav-icon uil uil-user-nurse"></span>
                         <span class="menu-text">Profile</span>
                     </a>
                 </li>
-                <li class="{{ request()->is('administrative/collection') ? 'active' : '' }}">
-                    <a href="/" class="">
+                <li class="{{ request()->routeIs('reset_password') ? 'active' : '' }}">
+                    <a href="{{ route('reset_password') }}" class="">
                         <span class="nav-icon uil uil-sync"></span>
                         <span class="menu-text">Reset Password</span>
                     </a>
