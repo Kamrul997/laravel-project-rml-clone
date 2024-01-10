@@ -30,12 +30,36 @@
                                 </span>
                             </div>
                         </div>
-                        <button type="submit" class="btn btn-primary mr-2">Import</button>
+                        <div class="d-flex">
+                            <button type="submit" class="btn btn-xs btn-primary btn-icon-text me-2 mb-md-0">Import</button>
+                            <a href="{{ asset('/csv/target_sheet_import_example.csv') }}"
+                                class="btn btn-xs btn-primary btn-icon-text me-2 mb-md-0">
+                                <i class="btn-icon-prepend" data-feather="download-cloud"></i>
+                                Demo File Download
+                            </a>
+                        </div>
+
+                        {{-- <div class="col-12">
+                            <div class="card  card-default card-md mb-4">
+                               <div class="card-header">
+                                  <h6>File Browser</h6>
+                               </div>
+                               <div class="card-body pb-md-40 pt-md-30">
+                                  <div class="custom-file">
+
+                                     <input class="form-control custom-file-input" type="file" id="customFile">
+                                     <label class="custom-file-label ps-15" for="customFile">Browse</label>
+                                  </div>
+                               </div>
+                            </div>
+                         </div> --}}
+
+                         {{-- <button type="submit" class="btn btn-primary mr-2">Import</button>
                         <a href="{{ asset('/csv/target_sheet_import_example.csv') }}"
                             class="btn btn-primary btn-icon-text mb-2 mb-md-0">
                             <i class="btn-icon-prepend" data-feather="download-cloud"></i>
                             Demo File Download
-                        </a>
+                        </a> --}}
                     </form>
                 </div>
             </div>
@@ -43,4 +67,7 @@
     </div>
 @endsection
 @section('page-js')
+
+
+
 @endsection

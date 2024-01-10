@@ -28,11 +28,13 @@
                             </span>
                         </div>
                     </div>
-                    <button type="submit" class="btn btn-primary mr-2">Import</button>
-                    <a href="{{asset('/csv/bank_sheet_import_example.csv')}}" class="btn btn-primary btn-icon-text mb-2 mb-md-0">
-                        <i class="btn-icon-prepend" data-feather="download-cloud"></i>
-                        Demo File Download
-                    </a>
+                    <div class="d-flex">
+                        <button type="submit" class="btn btn-xs btn-primary btn-icon-text me-2 mb-md-0">Import</button>
+                        <a href="{{asset('/csv/bank_sheet_import_example.csv')}}" class="btn btn-xs btn-primary btn-icon-text me-2 mb-md-0">
+                            <i class="btn-icon-prepend" data-feather="download-cloud"></i>
+                            Demo File Download
+                        </a>
+                    </div>
                 </form>
             </div>
         </div>
