@@ -222,6 +222,14 @@ Route::namespace('Administrative')->middleware('auth')->prefix('administrative')
         Route::get('get-daily-data', [ForecastController::class, 'index'])->name('get_daily_data');
     });
 
+    Route::prefix('statement')->group(function () {
+        Route::get('/list', [StatementController::class, 'index'])->name('statement');
+        Route::get('account', [StatementController::class, 'account'])->name('statement.account');
+        Route::get('final', [StatementController::class, 'final'])->name('statement.final');
+        Route::get('account-statement-download/{id}', [StatementController::class, 'accountStatement'])->name('download.statement.account');
+        Route::post('final-statement-download', [StatementController::class, 'finalStatement'])->name('download.statement.final');
+    });
+
     Route::prefix('reports')->group(function () {
         Route::get('/final-collection', [FinalCollectionController::class, 'index'])->name('final.collection');
         Route::get('/data/final-collection', [FinalCollectionController::class, 'data'])->name('data.final.collection');
