@@ -1,6 +1,6 @@
 @extends('administrative.layouts.master')
 @section('page-css')
-<link rel="stylesheet" href="{{ asset('assets/dashboard-css/dashboard-css.css') }}">
+<link rel="stylesheet" href="{{ asset('assets/css/dashboard-css/dashboard-css.css') }}">
 @endsection
 @section('content')
 <div class="dash container">
@@ -17,26 +17,26 @@
                 <div class="card-wrapper">
                     <h4 class="text-white text-bold">{{ $lastMonth ? number_format($lastMonth) : 0 }} <span>BDT</span>
                     </h4>
-                    <h6>Last Month</h6>
+                    <h6 class="text-white text-bold">Last Month</h6>
                 </div>
             </div>
             <div class=" perform-card text-white">
                 <div class="card-wrapper">
                     <h4 class="text-white text-bold">{{ $thisMonth ? number_format($thisMonth) : 0 }} <span>BDT</span>
                     </h4>
-                    <h6>This Month</h6>
+                    <h6 class="text-white text-bold">This Month</h6>
                 </div>
             </div>
             <div class=" perform-card text-white">
                 <div class="card-wrapper">
                     <h4 class="text-white text-bold">{{ $lastDay ? number_format($lastDay) : 0 }} <span>BDT</span></h4>
-                    <h6>Last Day</h6>
+                    <h6 class="text-white text-bold">Last Day</h6>
                 </div>
             </div>
             <div class=" perform-card red-card text-white">
                 <div class="card-wrapper">
                     <h4 class="text-white text-bold">{{ $today ? number_format($today) : 0 }} <span>BDT</span></h4>
-                    <h6>Today</h6>
+                    <h6 class="text-white text-bold">Today</h6>
                 </div>
             </div>
             <div class=" perform-card text-white">
@@ -44,7 +44,7 @@
                     <h4 class="text-white text-bold monthly-amount">
                         {{ $monthlyForcast ? number_format($monthlyForcast) : 0 }} <span>BDT</span>
                     </h4>
-                    <h6>Monthly forecast</h6>
+                    <h6 class="text-white text-bold">Monthly forecast</h6>
                 </div>
                 @if (\Auth::user()->hasRole('Subunit'))
                 <div class="add-btn" type="button" data-toggle="modal" data-target="#monthlyForecastModal">
@@ -92,7 +92,7 @@
                 <div class="card-wrapper">
                     <h4 class="text-white text-bold daily-amount">{{ number_format($dailyForcast) }} <span>BDT</span>
                     </h4>
-                    <h6>Daily Forecast</h6>
+                    <h6 class="text-white text-bold">Daily Forecast</h6>
                 </div>
                 @if (\Auth::user()->hasRole('Subunit'))
                 <div class="add-btn" type="button" data-toggle="modal" data-target="#dailyForecastModal">
