@@ -1,8 +1,21 @@
 @extends('administrative.layouts.master')
 @section('page-css')
-    <link rel="stylesheet" href="{{ asset('assets/css/forecast-page/forecast-page.css') }}">
+    <link rel="stylesheet" href="{{ asset('assets\css\forecast-page\forecast-page.css') }}">
+
 @endsection
 @section('content')
+    <div class="mt-2">
+        <ul class="dm-breadcrumb nav">
+
+            <li class="dm-breadcrumb__item">
+                <a href="#">Forecast</a>
+                <span class="slash">/</span>
+            </li>
+            <li class="dm-breadcrumb__item">
+                <span>List</span>
+            </li>
+        </ul>
+    </div>
     <div class="d-flex justify-content-between align-items-center flex-wrap grid-margin">
         <div>
 
@@ -12,9 +25,9 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-12 grid-margin stretch-card">
-            <div class="card" style="width: 100vw;">
-                <div class="card-body">
+        <div class="col-md-12 grid-margin stretch-card mt-4">
+            <div class="h-100 card" style="width: 100%;">
+                <div class="card-body w-80 mx-auto my-0">
                     <h3 class="titles text-center">Forecast</h3>
                     <!-- tabs -------------->
                     <div class="active-tabs">
@@ -113,7 +126,6 @@
                 </div>
             </div>
         </div>
-    </div>
     </div>
 @endsection
 @section('page-js')

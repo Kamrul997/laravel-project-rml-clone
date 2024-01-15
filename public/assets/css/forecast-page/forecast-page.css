@@ -22,6 +22,7 @@
     background-color: #EBEBFF;
     border-top-right-radius: 3px;
     border-top-left-radius: 3px;
+    border-bottom: 3.5px solid #8231D3;
   }
     .active-tabs input#tab1:checked ~ .line {
     left: 0%;
@@ -50,6 +51,10 @@
     position: relative;
     transition: 0.25s background ease;
     cursor: pointer;
+  }
+
+  .active-tabs .peity{
+    display: none;
   }
     .active-tabs label::after {
     content: "";
@@ -138,7 +143,7 @@
     border: none;
     padding: 7px;
     color: white;
-    background-color: #5D5FEF !important;
+    background-color: #8231D3 !important;
     border-radius: 30px !important;
     height: 37px;
     width: 74px;
@@ -170,7 +175,7 @@
 }
 
 .view-d-table-header{
-    background-color: #5D5FEF !important;
+    background-color: #8231D3 !important;
     color: white !important;
     font-weight: 700 !important;
 }

@@ -194,7 +194,7 @@ class FinalCollectionController extends Controller
             ->addColumn('details', function ($row) {
                 $html = '';
                 $html .= '<a href="' . route('collection.show', $row->id) . '" >
-                                            <button class="btn btn-primary btn-sm">View</button></a>   ';
+                                            <button class="btn btn-primary btn-xs">View</button></a>   ';
                 return $html;
             })
             ->editColumn('target_arrear', function ($row) {

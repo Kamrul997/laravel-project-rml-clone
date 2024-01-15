@@ -2,13 +2,26 @@
 @section('page-css')
 @endsection
 @section('content')
-    <div class="d-flex justify-content-between align-items-center flex-wrap grid-margin">
+    <div class="mt-2">
+        <ul class="dm-breadcrumb nav">
+            <li class="dm-breadcrumb__item">
+                <a href="#">
+                    Report
+                </a>
+                <span class="slash">/</span>
+            </li>
+            <li class="dm-breadcrumb__item">
+                <a href="#">Final Collection</a>
+            </li>
+        </ul>
+    </div>
+    <div class="d-flex mt-4 mb-2 justify-content-between align-items-center flex-wrap grid-margin">
         <div>
             <h4 class="mb-3 mb-md-0">Final Collection</h4>
         </div>
         <div class="d-flex align-items-center flex-wrap text-nowrap">
             <a href="{{ route('administrative.data.final.collection.download') }}"
-                class="btn btn-primary btn-icon-text mb-2 mb-md-0">
+                class="btn btn-primary btn-icon-text mb-2 mb-md-0 btn-xs">
                 <i class="btn-icon-prepend" data-feather="download-cloud"></i>
                 Download
             </a>

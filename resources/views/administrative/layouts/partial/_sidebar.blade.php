@@ -142,11 +142,11 @@
                         <li class="{{ request()->is('administrative/reports/approve-date-wise-collection') ? 'active' : '' }}">
                             <a href="{{ route('administrative.approve.date.wise.collection') }}">Approve Date Wise Collection</a>
                         </li>
-                        <li class="{{ request()->is('administrative/deposit-report/*') ? 'active' : '' }}">
-                            <a href="{{ route('administrative.user') }}">Deposit Slip Wise Report</a>
+                        <li class="{{ request()->is('administrative/reports/deposit-slip-wise-report') ? 'active' : '' }}">
+                            <a href="{{ route('administrative.deposit.slip.wise.report') }}">Deposit Slip Wise Report</a>
                         </li>
-                        <li class="{{ request()->is('administrative/previous-approved/*') ? 'active' : '' }}">
-                            <a href="{{ route('administrative.user') }}">Previous Not Approved</a>
+                        <li class="{{ request()->is('administrative/reports/previous-not-approve') ? 'active' : '' }}">
+                            <a href="{{ route('administrative.previous.not.approve') }}">Previous Not Approved</a>
                         </li>
                     </ul>
                 </li>
