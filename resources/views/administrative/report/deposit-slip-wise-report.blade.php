@@ -59,28 +59,30 @@
         </div>
     </form>
     <div class="row">
-        <div class="col-md-12 grid-margin stretch-card">
+        <div class="col-md-12 grid-margin stretch-card mb-30">
             <div class="card">
-                <div class="card-body">
+                <div class="card-body ">
                     <h6 class="card-title"> </h6>
-                    <div class="table-responsive">
-                        <table id="datatables" class="table">
-                            <thead>
-                                <tr>
-                                    <th>Order No</th>
-                                    <th>Unit Id</th>
-                                    <th>Bank Name</th>
-                                    <th>Branch Name</th>
-                                    <th>Status</th>
-                                    <th>Entry Date</th>
-                                    <th>Deposit Date</th>
-                                    <th>Final Approval Date</th>
-                                    <th>Collection Amount</th>
-                                    <th>Note</th>
-                                </tr>
-                            </thead>
-                            <tbody></tbody>
-                        </table>
+                    <div class="userDatatable userDatatable--ticket userDatatable--ticket--2 mt-1">
+                        <div class="table-responsive">
+                            <table class="table mb-0 table-borderless" id="datatables">
+                                <thead>
+                                    <tr class="userDatatable-header">
+                                        <th>Order No</th>
+                                        <th>Unit Id</th>
+                                        <th>Bank Name</th>
+                                        <th>Branch Name</th>
+                                        <th>Status</th>
+                                        <th>Entry Date</th>
+                                        <th>Deposit Date</th>
+                                        <th>Final Approval Date</th>
+                                        <th>Collection Amount</th>
+                                        <th>Note</th>
+                                    </tr>
+                                </thead>
+                                <tbody></tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
